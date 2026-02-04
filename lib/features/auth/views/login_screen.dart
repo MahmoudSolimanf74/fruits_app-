@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_app/features/auth/viewmodel/login_screen_viewmodel.dart';
+import 'package:fruits_app/features/auth/viewmodel/auth_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_login_button.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewmodel = LoginScreenViewmodel();
+    final authmodel = AuthNavigator();
     return Scaffold(
       backgroundColor: AppColors.primarycolor,
       body: Padding(
@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: .start,
               children: [
                 GestureDetector(
-                  onTap: () => viewmodel.navigateToRoot(context),
+                  onTap: () => authmodel.toRoot(context),
                   child: Icon(Icons.close),
                 ),
               ],
@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Gap(20),
             CustomLoginButton(
-              ontap: () => viewmodel.navigateToSignupWithPhone(context),
+              ontap: () => authmodel.toSignupWithPhone(context),
               text: "Sign in with Phone Number",
               icon: Icons.phone,
             ),
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                 Text("Already member?"),
                 TextButton(
                   onPressed: () {
-                    viewmodel.navigateToLoginPage(context);
+                    authmodel.toLoginPage(context);
                   },
                   child: Text("Sign in "),
                 ),

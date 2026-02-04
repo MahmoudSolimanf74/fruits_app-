@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:fruits_app/features/auth/viewmodel/login_page_viewmodel.dart';
+import 'package:fruits_app/features/auth/viewmodel/auth_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_button.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
@@ -9,7 +9,7 @@ import 'package:gap/gap.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  final viewmodel = LoginPageViewmodel();
+  final authmodel = AuthNavigator();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class LoginPage extends StatelessWidget {
               CustomButton(
                 text: "Sign Up",
                 width: double.infinity,
-                ontap: () => viewmodel.navigateToRoot(context),
+                ontap: () => authmodel.toRoot(context),
               ),
               Gap(40),
               RichText(
@@ -58,7 +58,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          viewmodel.navigatToSignupWithPhone(context);
+                          authmodel.toSignupWithPhone(context);
                         },
                     ),
                   ],

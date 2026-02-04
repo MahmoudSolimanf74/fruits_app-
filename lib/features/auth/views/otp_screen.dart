@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/features/auth/viewmodel/auth_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_button.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
-import 'package:fruits_app/features/Home/views/root.dart';
 import 'package:gap/gap.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -13,6 +13,7 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authmodel = AuthNavigator();
     return Scaffold(
       backgroundColor: AppColors.primarycolor,
       appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
@@ -60,10 +61,7 @@ class OtpScreen extends StatelessWidget {
                 text: "Confirm",
                 width: double.infinity,
                 ontap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Root()),
-                  );
+                  authmodel.toRoot(context);
                 },
               ),
               const Gap(40),

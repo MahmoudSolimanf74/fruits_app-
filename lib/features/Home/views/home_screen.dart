@@ -1,27 +1,108 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/features/Home/viewmodel/home_viewmodel.dart';
+import 'package:fruits_app/features/Home/widgets/catigory_card.dart';
+import 'package:fruits_app/features/Home/widgets/seller_card.dart';
+import 'package:fruits_app/utils/theme/app_colors.dart';
+import 'package:fruits_app/utils/widgets/custom_text.dart';
 import 'package:gap/gap.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex = 0;
+  final viewmodel = HomeViewmodel();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Gap(150),
-          Row(
-            children: [
-              Text("data"),
-              Spacer(),
-              Icon(Icons.abc_outlined),
-              Icon(Icons.abc_outlined),
-            ],
+      backgroundColor: AppColors.primarycolor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: CustomText(
+          title: "Fruit Market",
+          size: 24,
+          color: AppColors.secondarycolor,
+          fontWeights: FontWeight.bold,
+        ),
+        actions: [
+          Icon(Icons.search, size: 50, color: AppColors.secondarycolor),
+          Gap(5),
+          Icon(
+            Icons.vertical_distribute,
+            size: 40,
+            color: AppColors.secondarycolor,
           ),
-          PageView(),
-          Row(),
-          Column(),
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          mainAxisAlignment: .start,
+          children: [
+            Divider(),
+            SizedBox(
+              height: 200,
+              child: PageView.builder(
+                controller: viewmodel.pageController,
+                onPageChanged: (value) => viewmodel.onPageChanged(value),
+                itemCount: viewmodel.banners.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Image.asset(
+                      viewmodel.banners[index],
+                      width: 400,
+                      height: 130,
+                    ),
+                  );
+                },
+              ),
+            ),
+            AnimatedBuilder(
+              animation: viewmodel,
+              builder: (context, _) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    viewmodel.banners.length,
+                    (index) => AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      margin: EdgeInsets.symmetric(horizontal: 4),
+                      width: viewmodel.currentIndex == index ? 12 : 8,
+                      height: viewmodel.currentIndex == index ? 12 : 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: viewmodel.currentIndex == index
+                            ? AppColors.secondarycolor
+                            : AppColors.greycolor,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            Row(
+              mainAxisAlignment: .spaceAround,
+              children: [...List.generate(3, (index) => CatigoryCard())],
+            ),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    CustomText(title: "Sellers", size: 18),
+                    Spacer(),
+                    TextButton(onPressed: () {}, child: Text("Show all")),
+                  ],
+                ),
+                ...List.generate(3, (index) => SellerCard()),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
