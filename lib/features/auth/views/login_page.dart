@@ -1,15 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fruits_app/features/auth/viewmodel/login_page_viewmodel.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_button.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
 import 'package:fruits_app/utils/widgets/custom_text_field.dart';
-import 'package:fruits_app/features/Home/views/root.dart';
-import 'package:fruits_app/features/auth/views/signup_with_phone.dart';
 import 'package:gap/gap.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+  final viewmodel = LoginPageViewmodel();
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +41,7 @@ class LoginPage extends StatelessWidget {
               CustomButton(
                 text: "Sign Up",
                 width: double.infinity,
-                ontap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Root()),
-                ),
+                ontap: () => viewmodel.navigateToRoot(context),
               ),
               Gap(40),
               RichText(
@@ -61,12 +58,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignupWithPhone(),
-                            ),
-                          );
+                          viewmodel.navigatToSignupWithPhone(context);
                         },
                     ),
                   ],

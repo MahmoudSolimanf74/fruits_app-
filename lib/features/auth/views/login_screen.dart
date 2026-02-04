@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/features/auth/viewmodel/login_screen_viewmodel.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_login_button.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
-import 'package:fruits_app/features/auth/views/login_page.dart';
-import 'package:fruits_app/features/auth/views/signup_with_phone.dart';
+
 import 'package:gap/gap.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -11,6 +11,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewmodel = LoginScreenViewmodel();
     return Scaffold(
       backgroundColor: AppColors.primarycolor,
       body: Padding(
@@ -22,7 +23,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: .start,
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.pushReplacementNamed(context, '/Home'),
+                  onTap: () => viewmodel.navigateToRoot(context),
                   child: Icon(Icons.close),
                 ),
               ],
@@ -42,10 +43,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Gap(20),
             CustomLoginButton(
-              ontap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SignupWithPhone()),
-              ),
+              ontap: () => viewmodel.navigateToSignupWithPhone(context),
               text: "Sign in with Phone Number",
               icon: Icons.phone,
             ),
@@ -66,10 +64,7 @@ class LoginScreen extends StatelessWidget {
                 Text("Already member?"),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
+                    viewmodel.navigateToLoginPage(context);
                   },
                   child: Text("Sign in "),
                 ),
