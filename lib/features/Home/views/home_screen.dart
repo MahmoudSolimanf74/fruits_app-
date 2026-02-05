@@ -35,7 +35,36 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 50,
               color: AppColors.secondarycolor,
             ),
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return Dialog(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: AppColors.primarycolor,
+                      ),
+                      width: 350,
+                      height: 350,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: .center,
+                            children: [Text("data")],
+                          ),
+                          Row(
+                            children: [Text("data"), Icon(Icons.abc_outlined)],
+                          ),
+                          TextField(),
+                          SelectionArea(child: Text("ssdssdds")),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
           ),
           Gap(5),
           Icon(

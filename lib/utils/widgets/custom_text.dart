@@ -6,6 +6,7 @@ class CustomText extends StatelessWidget {
   final double size;
   final FontWeight? fontWeights;
   final Color? color;
+  final bool? isDahed;
 
   const CustomText({
     super.key,
@@ -13,6 +14,7 @@ class CustomText extends StatelessWidget {
     required this.size,
     this.fontWeights,
     this.color,
+    this.isDahed,
   });
 
   @override
@@ -24,6 +26,7 @@ class CustomText extends StatelessWidget {
         fontWeight: fontWeights ?? FontWeight.normal,
         fontFamily: "Poppins",
         color: color ?? AppColors.blackcolor,
+        decoration: isDahed ?? false ? TextDecoration.lineThrough : null,
       ),
     );
   }
