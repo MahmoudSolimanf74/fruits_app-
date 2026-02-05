@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:fruits_app/features/Home/views/home_screen.dart';
+import 'package:fruits_app/utils/theme/app_colors.dart';
 
 class Root extends StatefulWidget {
   const Root({super.key});
@@ -9,43 +11,57 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  int _currentIndex = 0;
+  final PersistentTabController _controller = PersistentTabController(
+    initialIndex: 0,
+  );
 
-  // 5 صفحات مختلفة (ممكن تبدل Placeholder بأي صفحة عندك)
-  final List<Widget> _pages = [
-    HomeScreen(),
-    Center(child: Text("Page 2")),
-    Center(child: Text("Page 3")),
-    Center(child: Text("Page 4")),
-    Center(child: Text("Page 5")),
-  ];
+  List<Widget> _screens() {
+    return const [
+      HomeScreen(),
+      Center(child: Text("Order")),
+      Center(child: Text("Basket")),
+      Center(child: Text("Favorites")),
+      Center(child: Text("More")),
+    ];
+  }
+
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    return [
+      AppNavItem(icon: Icons.home_outlined, title: "Home"),
+      AppNavItem(icon: Icons.search, title: "Order"),
+      AppNavItem(icon: Icons.shopping_cart, title: "Basket"),
+      AppNavItem(icon: Icons.favorite, title: "Favorites"),
+      AppNavItem(icon: Icons.person, title: "More"),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(index: _currentIndex, children: _pages),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "order"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: "basket",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Favorites",
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "more"),
-        ],
-      ),
+    return PersistentTabView(
+      context,
+      controller: _controller,
+      screens: _screens(),
+      items: _navBarsItems(),
+
+      navBarStyle: NavBarStyle.style7,
+
+      backgroundColor: AppColors.secondarycolor,
+      confineToSafeArea: true,
+      handleAndroidBackButtonPress: true,
+      resizeToAvoidBottomInset: true,
+      stateManagement: true,
     );
   }
+}
+
+class AppNavItem extends PersistentBottomNavBarItem {
+  AppNavItem({required IconData icon, required String title})
+    : super(
+        icon: Icon(icon),
+        title: title,
+        activeColorPrimary: AppColors.primarycolor,
+        activeColorSecondary: AppColors.secondarycolor,
+        inactiveColorPrimary: Colors.grey,
+        textStyle: TextStyle(fontWeight: FontWeight.bold),
+      );
 }

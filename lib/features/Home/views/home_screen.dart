@@ -29,7 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
           fontWeights: FontWeight.bold,
         ),
         actions: [
-          Icon(Icons.search, size: 50, color: AppColors.secondarycolor),
+          GestureDetector(
+            child: Icon(
+              Icons.search,
+              size: 50,
+              color: AppColors.secondarycolor,
+            ),
+            onTap: () {},
+          ),
           Gap(5),
           Icon(
             Icons.vertical_distribute,
@@ -85,9 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            Row(
-              mainAxisAlignment: .spaceAround,
-              children: [...List.generate(3, (index) => CatigoryCard())],
+
+            SingleChildScrollView(
+              scrollDirection: .horizontal,
+              child: Row(
+                mainAxisAlignment: .spaceAround,
+                children: [...List.generate(7, (index) => CatigoryCard())],
+              ),
             ),
             Column(
               children: [
@@ -98,8 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextButton(onPressed: () {}, child: Text("Show all")),
                   ],
                 ),
-                ...List.generate(3, (index) => SellerCard()),
               ],
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [...List.generate(8, (index) => SellerCard())],
+                ),
+              ),
             ),
           ],
         ),

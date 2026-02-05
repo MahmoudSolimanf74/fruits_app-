@@ -18,4 +18,8 @@ class HomeViewmodel extends ChangeNotifier {
     currentIndex = index;
     notifyListeners();
   }
+
+  void ontap(){
+
+  }
 }
