@@ -5,7 +5,10 @@ import 'package:fruits_app/utils/widgets/custom_text.dart';
 class CustomButton extends StatelessWidget {
   final String text;
   final double? width;
+  final double? height;
   final Color? color;
+  final Color? boxColor;
+  final bool enableborder;
   final Function()? ontap;
 
   const CustomButton({
@@ -14,6 +17,9 @@ class CustomButton extends StatelessWidget {
     this.width,
     this.color,
     this.ontap,
+    this.height,
+    this.boxColor,
+    this.enableborder = false,
   });
 
   @override
@@ -22,11 +28,12 @@ class CustomButton extends StatelessWidget {
       onTap: ontap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.secondarycolor,
+          color: boxColor ?? AppColors.secondarycolor,
           borderRadius: BorderRadius.circular(50),
+          border: enableborder ? Border.all() : null,
         ),
         width: width ?? 177,
-        height: 50,
+        height: height ?? 50,
         child: Center(
           child: CustomText(
             title: text,

@@ -15,4 +15,11 @@ abstract class MyNavigator {
   static void pop(BuildContext context) {
     Navigator.pop(context);
   }
+
+  static void gototrack(BuildContext context, track) {
+    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => track),
+      (route) => false, // كل الصفحات القديمة هتمسح
+    );
+  }
 }

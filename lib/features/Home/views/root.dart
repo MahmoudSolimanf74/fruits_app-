@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/features/basket/views/basket_screen.dart';
+import 'package:fruits_app/features/trackorder/views/track_order.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:fruits_app/features/Home/views/home_screen.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
@@ -19,7 +20,7 @@ class _RootState extends State<Root> {
   List<Widget> _screens() {
     return const [
       HomeScreen(),
-      Center(child: Text("Order")),
+      TrackOrder(),
       BasketScreen(),
       Center(child: Text("Favorites")),
       Center(child: Text("More")),
