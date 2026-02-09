@@ -30,7 +30,7 @@ class _RootState extends State<Root> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       AppNavItem(icon: Icons.home_outlined, title: "Home"),
-      AppNavItem(icon: Icons.search, title: "Order"),
+      AppNavItem(icon: Icons.format_list_numbered, title: "Order"),
       AppNavItem(icon: Icons.shopping_cart, title: "Basket"),
       AppNavItem(icon: Icons.favorite, title: "Favorites"),
       AppNavItem(icon: Icons.person, title: "More"),
