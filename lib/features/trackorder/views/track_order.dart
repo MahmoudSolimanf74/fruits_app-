@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/features/trackorder/views/tracking_details.dart';
 import 'package:fruits_app/features/trackorder/widgets/track_order_card.dart';
+import 'package:fruits_app/utils/helper/my_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
 import 'package:gap/gap.dart';
@@ -26,7 +28,14 @@ class TrackOrder extends StatelessWidget {
             Divider(),
             Gap(20),
             ...List.generate(4, (index) {
-              return Column(children: [Gap(10), TrackOrderCard()]);
+              return Column(
+                children: [
+                  Gap(10),
+                  TrackOrderCard(
+                    ontap: () => MyNavigator.goto(context, TrackingDetails()),
+                  ),
+                ],
+              );
             }),
           ],
         ),

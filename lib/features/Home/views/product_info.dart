@@ -18,6 +18,7 @@ class _ProductInfoState extends State<ProductInfo> {
   final ProductInfoViewmodel viewmodel = ProductInfoViewmodel();
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var selectedWeight = viewmodel.weight[0];
     return Scaffold(
       appBar: AppBar(
