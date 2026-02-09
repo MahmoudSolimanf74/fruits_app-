@@ -143,7 +143,20 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children: [...List.generate(8, (index) => SellerCard())],
+                  children: [
+                    ...List.generate(
+                      8,
+                      (index) => SellerCard(
+                        name: "Seller name",
+                        image: 'assets/5.png',
+                        description: 'delivery Charges : 0.5 KD',
+                        state: 'open',
+                        product: 'Pizza',
+                        rate: '4.5',
+                        distance: '2.5 KM',
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

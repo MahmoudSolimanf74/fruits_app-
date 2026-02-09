@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:fruits_app/utils/helper/my_navigator.dart';
 
 class CheckoutViewmodel extends ChangeNotifier {
   final PageController pageController = PageController();

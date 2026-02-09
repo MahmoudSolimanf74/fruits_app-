@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/features/basket/viewmodel/checkout_viewmodel.dart';
-import 'package:fruits_app/features/basket/views/check_out_conf.dart';
 import 'package:fruits_app/features/basket/views/checkout_error.dart';
 import 'package:fruits_app/features/basket/widget/payment_card.dart';
 import 'package:fruits_app/utils/helper/my_navigator.dart';
@@ -20,6 +19,7 @@ class Payment extends StatefulWidget {
 class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var viewmodel = widget.viewmodel;
     return Scaffold(
       body: Column(
