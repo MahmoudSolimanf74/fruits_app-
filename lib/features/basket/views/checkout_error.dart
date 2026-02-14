@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_app/features/Home/views/home_screen.dart';
+import 'package:fruits_app/features/Home/viewmodel/root_viewmodel.dart';
 import 'package:fruits_app/utils/helper/my_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_button.dart';
@@ -35,7 +35,10 @@ class CheckoutError extends StatelessWidget {
                 text: "Back",
                 boxColor: AppColors.redcolor,
                 width: double.infinity,
-                ontap: () => MyNavigator.goToReplacement(context, HomeScreen()),
+                ontap: () {
+                  MyNavigator.clean(context);
+                  RootTabController.goToTab(0);
+                },
               ),
             ],
           ),

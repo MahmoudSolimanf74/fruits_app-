@@ -22,4 +22,8 @@ abstract class MyNavigator {
       (route) => false, // كل الصفحات القديمة هتمسح
     );
   }
+
+  static void clean(BuildContext context) {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }
 }

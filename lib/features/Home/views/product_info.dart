@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/features/Home/viewmodel/product_info_viewmodel.dart';
-import 'package:fruits_app/features/basket/views/basket_screen.dart';
+import 'package:fruits_app/features/Home/viewmodel/root_viewmodel.dart';
 import 'package:fruits_app/utils/helper/my_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_button.dart';
@@ -110,7 +110,10 @@ class _ProductInfoState extends State<ProductInfo> {
             Gap(50),
             CustomButton(
               text: "Add to cart",
-              ontap: () => MyNavigator.goToReplacement(context, BasketScreen()),
+              ontap: () {
+                MyNavigator.clean(context);
+                RootTabController.goToTab(2);
+              },
             ),
           ],
         ),

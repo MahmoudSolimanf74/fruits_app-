@@ -6,9 +6,11 @@ import 'package:fruits_app/features/basket/views/payment.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
 import 'package:gap/gap.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({super.key});
+  final PersistentTabController? controller;
+  const CheckoutScreen({super.key, this.controller});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();

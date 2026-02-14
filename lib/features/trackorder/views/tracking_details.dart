@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_app/features/Home/viewmodel/root_viewmodel.dart';
 import 'package:fruits_app/features/trackorder/viewmodel/track_viewmodel.dart';
 import 'package:fruits_app/features/trackorder/widgets/delivery_steps.dart';
+import 'package:fruits_app/utils/helper/my_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_button.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
@@ -48,7 +50,13 @@ class TrackingDetails extends StatelessWidget {
               ),
             ),
             Gap(30),
-            CustomButton(text: "Confirm"),
+            CustomButton(
+              ontap: () {
+                MyNavigator.clean(context);
+                RootTabController.goToTab(0);
+              },
+              text: "Confirm",
+            ),
             Gap(10),
             CustomButton(
               text: "Cancel Order",
@@ -67,8 +75,19 @@ class TrackingDetails extends StatelessWidget {
                       children: [
                         CustomText(title: "Cancel Order", size: 18),
                         Gap(50),
-                        CustomButton(text: "Confirm Order"),
-                        Text("Colse"),
+                        CustomButton(
+                          text: "Confirm cancelation",
+                          ontap: () {
+                            MyNavigator.clean(context);
+                            RootTabController.goToTab(0);
+                          },
+                        ),
+                        CustomButton(
+                          text: "Colse",
+                          boxColor: Colors.transparent,
+                          color: AppColors.blackcolor,
+                          ontap: () => MyNavigator.pop(context),
+                        ),
                       ],
                     ),
                   ),

@@ -5,9 +5,11 @@ import 'package:fruits_app/features/Home/widgets/seller_card.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
 import 'package:gap/gap.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final PersistentTabController? controller;
+  const HomeScreen({super.key,this.controller});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

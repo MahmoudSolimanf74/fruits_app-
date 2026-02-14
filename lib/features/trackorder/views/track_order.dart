@@ -5,9 +5,11 @@ import 'package:fruits_app/utils/helper/my_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
 import 'package:gap/gap.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class TrackOrder extends StatelessWidget {
-  const TrackOrder({super.key});
+  final PersistentTabController? controller;
+  const TrackOrder({super.key,  this.controller});
 
   @override
   Widget build(BuildContext context) {

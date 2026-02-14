@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/features/basket/viewmodel/checkout_viewmodel.dart';
-import 'package:fruits_app/features/basket/views/checkout_error.dart';
+import 'package:fruits_app/features/basket/views/check_out_conf.dart';
 import 'package:fruits_app/features/basket/widget/payment_card.dart';
 import 'package:fruits_app/utils/helper/my_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
@@ -79,7 +79,7 @@ class _PaymentState extends State<Payment> {
           CustomButton(
             text: "Place Order",
             width: double.infinity,
-            ontap: () => MyNavigator.goToReplacement(context, CheckoutError()),
+            ontap: () => MyNavigator.goToReplacement(context, CheckOutConf()),
           ),
         ],
       ),

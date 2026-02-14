@@ -6,9 +6,11 @@ import 'package:fruits_app/utils/theme/app_colors.dart';
 import 'package:fruits_app/utils/widgets/custom_button.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
 import 'package:gap/gap.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class BasketScreen extends StatelessWidget {
-  const BasketScreen({super.key});
+  final PersistentTabController? controller;
+  const BasketScreen({super.key, this.controller});
 
   @override
   Widget build(BuildContext context) {
