@@ -63,18 +63,33 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
               ],
             ),
             width: 390,
-            height: 50,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              child: Column(
                 children: [
-                  CustomText(
-                    title: "Saved Address",
-                    size: 18,
-                    fontWeights: FontWeight.bold,
+                  Row(
+                    children: [
+                      CustomText(
+                        title: "Address 1",
+                        size: 18,
+                        fontWeights: FontWeight.bold,
+                      ),
+                      Spacer(),
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: .circle,
+                          border: Border.all(),
+                        ),
+                        width: 25,
+                        height: 25,
+                      ),
+                    ],
                   ),
-                  Spacer(),
-                  Icon(Icons.add),
+                  CustomText(
+                    title:
+                        "John Doe \n +000-11-1234567 \n Room # 1 - Ground Floor, Al Najoum Building, 24 B \n Street, Dubai - United Arab Emirates ",
+                    size: 18,
+                  ),
                 ],
               ),
             ),
