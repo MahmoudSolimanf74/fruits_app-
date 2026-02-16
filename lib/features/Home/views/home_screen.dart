@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:fruits_app/features/Home/viewmodel/home_viewmodel.dart';
 import 'package:fruits_app/features/Home/widgets/catigory_card.dart';
 import 'package:fruits_app/features/Home/widgets/seller_card.dart';
+import 'package:fruits_app/utils/helper/my_navigator.dart';
 import 'package:fruits_app/utils/theme/app_colors.dart';
+import 'package:fruits_app/utils/widgets/custom_button.dart';
 import 'package:fruits_app/utils/widgets/custom_text.dart';
+import 'package:fruits_app/utils/widgets/custom_text_field.dart';
 import 'package:gap/gap.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   final PersistentTabController? controller;
-  const HomeScreen({super.key,this.controller});
+  const HomeScreen({super.key, this.controller});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -41,28 +44,107 @@ class _HomeScreenState extends State<HomeScreen> {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return Dialog(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: AppColors.primarycolor,
-                      ),
-                      width: 350,
-                      height: 350,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: .center,
-                            children: [Text("data")],
+                  return StatefulBuilder(
+                    builder: (BuildContext context, setState) {
+                      return Dialog(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: AppColors.primarycolor,
                           ),
-                          Row(
-                            children: [Text("data"), Icon(Icons.abc_outlined)],
+                          width: 350,
+                          height: 350,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 5,
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: .center,
+                                  children: [
+                                    CustomText(
+                                      title: "Filter by",
+                                      size: 18,
+                                      fontWeights: FontWeight.bold,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text("Delivered to "),
+                                    Icon(Icons.pedal_bike_sharp),
+                                  ],
+                                ),
+                                CustomTextField(text: "", hintText: "Areas"),
+                                Gap(20),
+                                Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(
+                                          () => viewmodel.selectOfferfilter(),
+                                        );
+                                      },
+
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          shape: .circle,
+                                          border: Border.all(),
+                                        ),
+                                        width: 25,
+                                        height: 25,
+                                        child: viewmodel.offerFilter
+                                            ? Icon(Icons.check)
+                                            : null,
+                                      ),
+                                    ),
+                                    Gap(5),
+                                    CustomText(title: "Offers", size: 18),
+                                  ],
+                                ),
+                                Gap(5),
+                                Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(
+                                          () => viewmodel
+                                              .selectfreeDeliveryFilter(),
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          shape: .circle,
+                                          border: Border.all(),
+                                        ),
+                                        width: 25,
+                                        height: 25,
+                                        child: viewmodel.freeDeliveryFilter
+                                            ? Icon(Icons.check)
+                                            : null,
+                                      ),
+                                    ),
+                                    Gap(5),
+                                    CustomText(title: "freeDelivery", size: 18),
+                                  ],
+                                ),
+                                Gap(20),
+                                CustomButton(
+                                  text: "apply Filter",
+                                  ontap: () => MyNavigator.pop(context),
+                                ),
+                                TextButton(
+                                  onPressed: () => MyNavigator.pop(context),
+                                  child: CustomText(title: "Colse", size: 18),
+                                ),
+                              ],
+                            ),
                           ),
-                          TextField(),
-                          SelectionArea(child: Text("ssdssdds")),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   );
                 },
               );
