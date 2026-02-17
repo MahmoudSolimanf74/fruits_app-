@@ -48,7 +48,7 @@ class MoreScreen extends StatelessWidget {
             Gap(10),
             CustomButton(
               text: "Login",
-              ontap: () => MyNavigator.goToReplacement(context, LoginPage()),
+              ontap: () => MyNavigator.gototrack(context, LoginPage()),
             ),
             Gap(20),
             CustomRow(

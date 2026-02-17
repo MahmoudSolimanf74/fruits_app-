@@ -19,7 +19,7 @@ abstract class MyNavigator {
   static void gototrack(BuildContext context, track) {
     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => track),
-      (route) => false, // كل الصفحات القديمة هتمسح
+      (route) => false,
     );
   }
 

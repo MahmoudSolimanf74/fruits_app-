@@ -7,33 +7,31 @@ import 'package:fruits_app/features/auth/views/otp_screen.dart';
 import 'package:fruits_app/utils/helper/my_navigator.dart';
 
 class AuthNavigator {
-
-   void toRoot(BuildContext context) {
-    MyNavigator.goToReplacement(context, Root());
+  void toRoot(BuildContext context) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const Root()),
+      (route) => false,
+    );
   }
 
-
-   void toSignupWithPhone(BuildContext context) {
+  void toSignupWithPhone(BuildContext context) {
     MyNavigator.goto(context, SignupWithPhone());
   }
 
-
-   void toLoginPage(BuildContext context) {
+  void toLoginPage(BuildContext context) {
     MyNavigator.goto(context, LoginPage());
   }
 
-
-   void toHomeScreen(BuildContext context) {
+  void toHomeScreen(BuildContext context) {
     MyNavigator.goToReplacement(context, HomeScreen());
   }
 
-
-   void toOtpScreen(BuildContext context) {
+  void toOtpScreen(BuildContext context) {
     MyNavigator.goto(context, OtpScreen());
   }
 
-
-   void pop(BuildContext context) {
+  void pop(BuildContext context) {
     MyNavigator.pop(context);
   }
 }
