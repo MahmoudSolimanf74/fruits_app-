@@ -58,7 +58,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          authmodel.toRoot(context);
+                          authmodel.toLoginScreen(context);
                         },
                     ),
                   ],

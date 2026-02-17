@@ -36,7 +36,7 @@ class OtpScreen extends StatelessWidget {
               PinCodeTextField(
                 appContext: context,
                 controller: otpController,
-                length: 4, // 4 أرقام
+                length: 4,
                 keyboardType: TextInputType.number,
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.box,

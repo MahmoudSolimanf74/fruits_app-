@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_app/features/Home/views/root.dart';
+import 'package:fruits_app/features/splash/views/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Root());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }
-

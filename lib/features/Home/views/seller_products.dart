@@ -17,34 +17,36 @@ class SellerProducts extends StatelessWidget {
       appBar: AppBar(title: Text("Fruit Market")),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(
-          crossAxisAlignment: .start,
-          children: [
-            SellerCard(
-              name: "Seller name",
-              image: 'assets/5.png',
-              description: 'delivery Charges : 0.5 KD',
-              state: 'open',
-              product: 'Pizza',
-              rate: "",
-              distance: "",
-            ),
-            CustomText(
-              title: "Catigoris",
-              size: 24,
-              fontWeights: FontWeight.bold,
-              color: AppColors.secondarycolor,
-            ),
-            Gap(10),
-            Row(children: [...List.generate(4, (index) => CatigoryCard())]),
-            Gap(20),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: ProductCard(
-                ontap: () => MyNavigator.goto(context, ProductInfo()),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: .start,
+            children: [
+              SellerCard(
+                name: "Seller name",
+                image: 'assets/5.png',
+                description: 'delivery Charges : 0.5 KD',
+                state: 'open',
+                product: 'Pizza',
+                rate: "",
+                distance: "",
               ),
-            ),
-          ],
+              CustomText(
+                title: "Catigoris",
+                size: 24,
+                fontWeights: FontWeight.bold,
+                color: AppColors.secondarycolor,
+              ),
+              Gap(10),
+              Row(children: [...List.generate(4, (index) => CatigoryCard())]),
+              Gap(20),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: ProductCard(
+                  ontap: () => MyNavigator.goto(context, ProductInfo()),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

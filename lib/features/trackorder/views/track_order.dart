@@ -9,12 +9,16 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class TrackOrder extends StatelessWidget {
   final PersistentTabController? controller;
-  const TrackOrder({super.key,  this.controller});
+  const TrackOrder({super.key, this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primarycolor,
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.primarycolor,
+        surfaceTintColor: Colors.transparent,
         title: CustomText(
           title: "My Orders",
           size: 24,
@@ -29,16 +33,49 @@ class TrackOrder extends StatelessWidget {
           children: [
             Divider(),
             Gap(20),
-            ...List.generate(4, (index) {
-              return Column(
-                children: [
-                  Gap(10),
-                  TrackOrderCard(
-                    ontap: () => MyNavigator.goto(context, TrackingDetails()),
-                  ),
-                ],
-              );
-            }),
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final orientation = MediaQuery.of(context).orientation;
+                  const itemCount = 4;
+                  if (orientation == Orientation.portrait) {
+                    // رأسي: ليست عادية بفواصل ثابتة
+                    return ListView.separated(
+                      itemCount: itemCount,
+                      separatorBuilder: (context, index) => const Gap(10),
+                      itemBuilder: (context, index) {
+                        return TrackOrderCard(
+                          ontap: () => MyNavigator.goto(
+                            context,
+                            const TrackingDetails(),
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    // أفقي: جريد بأبعاد مضبوطة تناسب الكارد
+                    return GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: 5,
+                          ),
+                      itemCount: itemCount,
+                      itemBuilder: (context, index) {
+                        return TrackOrderCard(
+                          ontap: () => MyNavigator.goto(
+                            context,
+                            const TrackingDetails(),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),

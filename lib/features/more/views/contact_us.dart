@@ -22,20 +22,25 @@ class ContactUs extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-        child: Column(
-          children: [
-            Divider(),
-            CustomTextField(text: "Name", hintText: "your name ..."),
-            Gap(5),
-            CustomTextField(text: "mobile number", hintText: ""),
-            Gap(5),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Divider(),
+              CustomTextField(text: "Name", hintText: "your name ..."),
+              Gap(5),
+              CustomTextField(text: "mobile number", hintText: ""),
+              Gap(5),
 
-            CustomTextField(text: "Message", hintText: ""),
-            Gap(25),
-            CustomButton(text: "Submit", width: double.infinity),
-            Gap(20),
-            Row(crossAxisAlignment: .center, children: [Icon(Icons.facebook)]),
-          ],
+              CustomTextField(text: "Message", hintText: ""),
+              Gap(25),
+              CustomButton(text: "Submit", width: double.infinity),
+              Gap(20),
+              Row(
+                crossAxisAlignment: .center,
+                children: [Icon(Icons.facebook)],
+              ),
+            ],
+          ),
         ),
       ),
     );

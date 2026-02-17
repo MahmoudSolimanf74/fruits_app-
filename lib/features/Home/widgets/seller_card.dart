@@ -13,64 +13,104 @@ class SellerCard extends StatelessWidget {
   final String product;
   final String? rate;
   final String? distance;
-  const SellerCard({super.key, required this.name, required this.image, required this.description, required this.state, required this.product, this.rate, this.distance});
+  const SellerCard({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.description,
+    required this.state,
+    required this.product,
+    this.rate,
+    this.distance,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       child: GestureDetector(
         onTap: () => MyNavigator.goto(context, SellerProducts()),
         child: Container(
-          width: 412,
-          height: 105,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
             color: AppColors.primarycolor,
             boxShadow: [
               BoxShadow(
-                color: AppColors.blackcolor.withValues(alpha: 0.3),
+                color: AppColors.blackcolor.withValues(alpha: 0.15),
                 blurRadius: 4,
-                offset: Offset(2, 2),
+                offset: Offset(1, 1),
               ),
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(image),
-                Gap(10),
-                Column(
-                  mainAxisAlignment: .spaceEvenly,
-                  crossAxisAlignment: .start,
-                  children: [
-                    Row(
-                      children: [
-                        CustomText(
-                          title: name,
-                          size: 18,
-                          fontWeights: FontWeight.bold,
-                        ),
-                        Icon(Icons.star),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.motorcycle),
-                        CustomText(
-                          title: description ,
-                          size: 14,
-                        ),
-                      ],
-                    ),
-                    Row(children: [Text(state), Gap(20), Text(product)]),
-                  ],
+                SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(image, fit: BoxFit.cover),
+                  ),
                 ),
-                Spacer(),
+                Gap(8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomText(
+                              title: name,
+                              size: 14,
+                              fontWeights: FontWeight.bold,
+                            ),
+                          ),
+                          Gap(4),
+                          Icon(Icons.star, size: 16, color: Colors.amber),
+                        ],
+                      ),
+                      Gap(4),
+                      Row(
+                        children: [
+                          Icon(Icons.motorcycle, size: 14),
+                          Gap(4),
+                          Expanded(
+                            child: CustomText(title: description, size: 11),
+                          ),
+                        ],
+                      ),
+                      Gap(4),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(state, style: TextStyle(fontSize: 11)),
+                          ),
+                          Gap(8),
+                          Expanded(
+                            child: Text(
+                              product,
+                              style: TextStyle(fontSize: 11),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(6),
                 Column(
-                  mainAxisAlignment: .spaceAround,
-                  children: [Text(rate ?? ""), Text(distance ?? "2.5 KM")],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(rate ?? "", style: TextStyle(fontSize: 11)),
+                    Gap(8),
+                    Text(distance ?? "2.5 KM", style: TextStyle(fontSize: 11)),
+                  ],
                 ),
               ],
             ),

@@ -9,6 +9,13 @@ class TrackOrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isLandscape = size.width > size.height;
+    // ارتفاع ثابت في الوضع الرأسي، ومرن في الجريد الأفقي (يأخذ ارتفاع الخلية)
+    final double? cardHeight = isLandscape ? null : 110.0;
+    final avatarSize = isLandscape ? 40.0 : 50.0;
+    final actionSize = isLandscape ? 45.0 : 60.0;
+
     return GestureDetector(
       onTap: ontap,
       child: Container(
@@ -24,52 +31,62 @@ class TrackOrderCard extends StatelessWidget {
           ],
         ),
         width: double.infinity,
-        height: 100,
+        height: cardHeight,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  shape: .circle,
-                  color: Colors.amberAccent.shade400,
-                ),
-                width: 50,
-                height: 50,
-                child: Icon(Icons.fire_truck),
-              ),
-              Gap(20),
-              Column(
-                mainAxisAlignment: .center,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CustomText(
-                    title: "delivery ID",
-                    size: 18,
-                    fontWeights: FontWeight.bold,
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.amberAccent.shade400,
+                    ),
+                    width: avatarSize,
+                    height: avatarSize,
+                    child: const Icon(Icons.fire_truck),
                   ),
-                  CustomText(title: "9 spt . 4 items", size: 14),
-                  CustomText(
-                    title: "Delivering",
-                    size: 14,
-                    color: Colors.amber,
+                  const Gap(12),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        CustomText(
+                          title: "delivery ID",
+                          size: 16,
+                          fontWeights: FontWeight.bold,
+                        ),
+                        Gap(4),
+                        CustomText(title: "9 spt . 4 items", size: 13),
+                        Gap(4),
+                        CustomText(
+                          title: "Delivering",
+                          size: 13,
+                          color: Colors.amber,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Gap(8),
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.amberAccent.shade400,
+                    ),
+                    width: actionSize,
+                    height: actionSize,
+                    child: const Icon(
+                      Icons.arrow_circle_right_outlined,
+                      size: 28,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
-              ),
-              Spacer(),
-              Container(
-                decoration: BoxDecoration(
-                  shape: .circle,
-                  color: Colors.amberAccent.shade400,
-                ),
-                width: 60,
-                height: 60,
-                child: Icon(
-                  Icons.arrow_circle_right_outlined,
-                  size: 35,
-                  color: Colors.white,
-                ),
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),

@@ -16,7 +16,11 @@ class TrackingDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final TrackViewmodel viewmodel = TrackViewmodel();
     return Scaffold(
+      backgroundColor: AppColors.primarycolor,
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.primarycolor,
+        surfaceTintColor: Colors.transparent,
         title: CustomText(
           title: "Order tracking",
           size: 24,
@@ -25,21 +29,20 @@ class TrackingDetails extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SizedBox(
-          width: double.infinity,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
-            crossAxisAlignment: .center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomText(title: "Your Order Code: #882610", size: 14),
               CustomText(title: "3 items - 37.50 KD", size: 14),
               CustomText(title: "Payment Method : Cash", size: 14),
-              Gap(50),
+              Gap(30),
               SizedBox(
-                width: 350,
+                width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
-                  crossAxisAlignment: .center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ...List.generate(
                       viewmodel.steps.length,
@@ -52,7 +55,7 @@ class TrackingDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              Gap(30),
+              Gap(24),
               CustomButton(
                 ontap: () {
                   MyNavigator.clean(context);
@@ -70,42 +73,46 @@ class TrackingDetails extends StatelessWidget {
                   context: context,
                   builder: (context) => Dialog(
                     child: Container(
-                      width: 350,
-                      height: 350,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.5,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: AppColors.primarycolor,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 5,
-                          horizontal: 8,
+                          vertical: 8,
+                          horizontal: 12,
                         ),
-                        child: Column(
-                          children: [
-                            CustomText(title: "Cancel Order", size: 18),
-                            Gap(10),
-                            CustomTextField(
-                              text: "Reason",
-                              hintText: "plase reason",
-                            ),
-                            Gap(10),
-                            CustomTextField(text: "note", hintText: ""),
-                            Gap(20),
-                            CustomButton(
-                              text: "Confirm cancelation",
-                              ontap: () {
-                                MyNavigator.clean(context);
-                                RootTabController.goToTab(0);
-                              },
-                            ),
-                            CustomButton(
-                              text: "Colse",
-                              boxColor: Colors.transparent,
-                              color: AppColors.blackcolor,
-                              ontap: () => MyNavigator.pop(context),
-                            ),
-                          ],
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CustomText(title: "Cancel Order", size: 18),
+                              Gap(10),
+                              CustomTextField(
+                                text: "Reason",
+                                hintText: "plase reason",
+                              ),
+                              Gap(10),
+                              CustomTextField(text: "note", hintText: ""),
+                              Gap(20),
+                              CustomButton(
+                                width: double.infinity,
+                                text: "Confirm cancelation",
+                                ontap: () {
+                                  MyNavigator.clean(context);
+                                  RootTabController.goToTab(0);
+                                },
+                              ),
+                              CustomButton(
+                                text: "Colse",
+                                boxColor: Colors.transparent,
+                                color: AppColors.blackcolor,
+                                ontap: () => MyNavigator.pop(context),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

@@ -35,87 +35,89 @@ class _ProductInfoState extends State<ProductInfo> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-        child: Column(
-          children: [
-            Image.asset("assets/11.png"),
-            Gap(10),
-            Row(
-              children: [
-                CustomText(
-                  title: "Product name",
-                  size: 24,
-                  fontWeights: FontWeight.bold,
-                ),
-                Spacer(),
-                CustomText(
-                  title: "12.00 KD",
-                  size: 18,
-                  fontWeights: FontWeight.bold,
-                  color: AppColors.blackcolor,
-                ),
-                Gap(60),
-              ],
-            ),
-            CustomText(
-              title:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n sed do eiusmod tempor incididunt ut labore et dolore\n magna aliqua.",
-              size: 14,
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset("assets/11.png"),
+              Gap(10),
+              Row(
+                children: [
+                  CustomText(
+                    title: "Product name",
+                    size: 24,
+                    fontWeights: FontWeight.bold,
+                  ),
+                  Spacer(),
+                  CustomText(
+                    title: "12.00 KD",
+                    size: 18,
+                    fontWeights: FontWeight.bold,
+                    color: AppColors.blackcolor,
+                  ),
+                  Gap(60),
+                ],
+              ),
+              CustomText(
+                title:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit,\n sed do eiusmod tempor incididunt ut labore et dolore\n magna aliqua.",
+                size: 14,
+              ),
 
-            DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                labelText: "Select Weight",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: "Select Weight",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
+                initialValue: viewmodel.weight[0],
+                items: viewmodel.weight
+                    .map(
+                      (item) => DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(item),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedWeight = value.toString();
+                  });
+                },
               ),
-              initialValue: viewmodel.weight[0],
-              items: viewmodel.weight
-                  .map(
-                    (item) => DropdownMenuItem<String>(
-                      value: item,
-                      child: Text(item),
-                    ),
-                  )
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedWeight = value.toString();
-                });
-              },
-            ),
-            Gap(40),
-            DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                labelText: "Select Weight",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
+              Gap(40),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: "Select Weight",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
+                initialValue: viewmodel.addons[0],
+                items: viewmodel.addons
+                    .map(
+                      (item) => DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(item),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedWeight = value.toString();
+                  });
+                },
               ),
-              initialValue: viewmodel.addons[0],
-              items: viewmodel.addons
-                  .map(
-                    (item) => DropdownMenuItem<String>(
-                      value: item,
-                      child: Text(item),
-                    ),
-                  )
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedWeight = value.toString();
-                });
-              },
-            ),
-            Gap(50),
-            CustomButton(
-              text: "Add to cart",
-              ontap: () {
-                MyNavigator.clean(context);
-                RootTabController.goToTab(2);
-              },
-            ),
-          ],
+              Gap(50),
+              CustomButton(
+                text: "Add to cart",
+                ontap: () {
+                  MyNavigator.clean(context);
+                  RootTabController.goToTab(2);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
